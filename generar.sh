@@ -1,9 +1,7 @@
 #!/bin/bash
 
 generarImagenes () {
-
-	curl -L https://raw.githubusercontent.com/adalessandro/EdP-2023-TP-Final/main/dict.csv --output "ArchivoNombres"
-
+	if ! [ -e ArchivoNombres ]; then curl -L https://raw.githubusercontent.com/adalessandro/EdP-2023-TP-Final/main/dict.csv --output "ArchivoNombres"; fi
 	LINEAS=$(wc -l ArchivoNombres | cut -d' ' -f 1)
 
 	if [ -e images ]
@@ -23,6 +21,13 @@ generarImagenes () {
 		curl -L https://source.unsplash.com/random/900%C3%97700/?person --output "$NOMBRE_RANDOM"
 		sleep 1
 		cd ..
+	done
+	
+	gzip -r images	
+	
+	cd images
+	for archivo in *; do
+		md5sum $archivo >> sumaDeVerificacion
 	done
 }
 
