@@ -1,13 +1,9 @@
 #!/bin/bash
 
 descomprimir () {
-	IMAGENES_COMPRIMIRDAS=$1
-	SUMA_VERIFICACION=$($2 | cut -d' ' -f 1)
-	
-	cd $IMAGENES_COMPRIMIDAS
-	for archivo in *;do
-		gunzip $archivo
-	done
+	cd `pwd`/$1
+
+	for archivo in *.gz;do md5sum -c $archivo $2 && gunzip $archivo; done
 }
 
 descomprimir $1 $2

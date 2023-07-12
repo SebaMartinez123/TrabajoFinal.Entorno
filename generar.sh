@@ -27,7 +27,7 @@ generarImagenes () {
 	
 	cd images
 	for archivo in *; do
-		md5sum $archivo >> sumaDeVerificacion
+		md5sum $archivo >> sumaDeVerificacion.txt
 	done
 }
 
