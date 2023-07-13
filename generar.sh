@@ -50,6 +50,7 @@ generarImagenes () {
 		md5sum $archivo >> checksum.txt
 	done
 
+	echo "Se generaron $1 imágenes"
 }
 
 generarImagenes $1 

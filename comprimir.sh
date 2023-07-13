@@ -1,7 +1,7 @@
 #!/bin/bash
 
-function comprimir () {
-	if ! [ -d $1 ];then echo "El argumento debe ser un directorio" && return 1; fi
+comprimir () {
+	if ! [ -d $1 ];then echo "Se deben crear las imágenes primero" && return 1; fi
 
 	cd $1
 	nombresValidos="^[A-Z][a-z](.*jpg)$"
@@ -27,9 +27,14 @@ function comprimir () {
 
 	if [ -e checksum.txt ];then rm checksum.txt; fi
 	
-
+	cd ..
 	
-	tar -zcvf /home/matias/entorno/TP/archivosComprimidos.tar.gz *
+	
+	tar -zcvf $(pwd)/archivosComprimidos.tar.gz $1/*
+
+	rm -r $1
+
+	echo "Archivos comprimidos con éxito"
 }
 
 comprimir $1

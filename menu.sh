@@ -1,6 +1,6 @@
 #!/bin/bash
 
-menu.sh() {
+menu () {
 	while true; do
 		echo "|========================|"
 		echo "|    MENU DE OPCIONES    |"
@@ -14,18 +14,23 @@ menu.sh() {
 		read -p "Selecciona una opción: " opcion
 
 		case $opcion in
-			1) read a
-				source generar.sh
+			1) echo "Ingrese número de imágenes a generar: "
+				read input
+				echo $(pwd)
+				source generar.sh $input
+				cd ..
 				;;
-			2) read b c
-				source descomprimir.sh  
+			2) source descomprimir.sh images checksum.txt
+				if [ $? -eq 0 ];then cd ..;fi
 				;;
-			3) read d
-				source procesar.sh
+			3) source procesar.sh images
+				if [ $? -eq 0 ];then cd ..;fi
 				;;
-			4) source comprimir.sh
+			4) source comprimir.sh images
+				if [ $? -eq 0 ];then cd ..;fi
 				;;
-			0) exit 0 
+			0) echo "Adiós"
+				exit 0
 				;;
 			*)
 				echo "Opción inválida. Por favor, ingresa un número válido."
@@ -36,4 +41,4 @@ menu.sh() {
 	done
 }
 
-menu.sh
+menu

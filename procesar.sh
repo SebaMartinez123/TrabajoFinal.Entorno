@@ -1,9 +1,9 @@
 #!/bin/bash
 
-function procesar () {
+procesar () {
 	#Valida los argumentos
 	if [ $# -ne 1 ]; then echo "Debe ingresar un solo argumento" && return 1; fi
-	if ! [ -d $1 ]; then echo "El argumento debe ser una carpeta" && return 1; fi
+	if ! [ -d $1 ]; then echo "Primero se deben crear las imágenes" && return 1; fi
 
 		
 	cd $1
@@ -16,6 +16,7 @@ function procesar () {
 			convert $archivo -gravity center -resize 512x512+0+0 \-extent 512x512 $archivo
 		fi
 	done
+	echo "Imágenes procesadas con éxito"
 }
 
 procesar $1
