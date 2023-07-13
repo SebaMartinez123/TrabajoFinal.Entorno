@@ -27,10 +27,9 @@ function comprimir () {
 
 	if [ -e checksum.txt ];then rm checksum.txt; fi
 	
-	cd ..
 
-
-	tar -zcvf archivosComprimidos.tar.gz *
+	
+	tar -zcvf /home/matias/entorno/TP/archivosComprimidos.tar.gz *
 }
 
 comprimir $1
