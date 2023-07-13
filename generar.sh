@@ -21,7 +21,8 @@ generarImagenes () {
 
 	
 	#Chequea si se ingresaron argumentos y si el argumento es un número
-	if ! [ $# -eq 1 ]; then echo "Se debe ingresar un argumento" && return 2; fi
+	if [[ $# -eq 0 ]]; then echo "Tiene que pasar un argumento" && return 2; fi
+	if [[ $1 == 0 ]]; then echo "No se generaron imágenes" && return 0; fi
 	regex="[[:digit:]]"	
 	if [[ $1 =~ $regex ]];then
 			for i in $(seq 1 $1)
@@ -32,12 +33,12 @@ generarImagenes () {
 				#Se elige un nombre aleatorio del archivo y se le eliminan los espacios y numeros
 				NOMBRE_RANDOM=$(sed -n "$LIMITE"p ArchivoNombres | cut -d',' -f 1 | tr -d ' ')
 				cd images
-				curl -L https://source.unsplash.com/random/900%C3%97700/?person --output "$NOMBRE_RANDOM"
+				curl -L https://source.unsplash.com/random/900%C3%97700/?person --output "$NOMBRE_RANDOM.jpg"
 				sleep 1
 				cd ..
 			done
 	else
-		echo "El argumento debe ser un número" && return 1
+		echo "Debe pasar un número como argumento" && return 1
 	fi
 	
 	#Comprime los archivos dentro de la carpeta creada
