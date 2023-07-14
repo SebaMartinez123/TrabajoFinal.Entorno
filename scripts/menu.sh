@@ -16,8 +16,6 @@ menu () {
 		case $opcion in
 			1) echo "Ingrese número de imágenes a generar: "
 				read input
-				#echo $(pwd)
-				cd $(pwd)/scripts
 				source generar.sh $input
 				cd ..
 				;;
