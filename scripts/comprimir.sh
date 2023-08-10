@@ -29,8 +29,9 @@ comprimir () {
 	
 	cd ..
 	
-	
+	rm salida/.
 	tar -zcvf $(pwd)/archivosComprimidos.tar.gz $1/*
+	mv $(pwd)/archivosComprimidos.tar.gz salida
 
 	rm -r $1
 

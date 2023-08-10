@@ -1,9 +1,9 @@
 FROM alpine
 
-RUN apk update && apk add bash imagemagick && apk add curl
+RUN apk update && apk add bash imagemagick && apk add curl && apk add --purge --no-cache --update gzip
 WORKDIR /home/matias/entorno/TP
 
 ADD scripts/ scripts
-
-ENTRYPOINT ["bash", "scripts/menu.sh"]
+WORKDIR scripts
+ENTRYPOINT ["bash", "menu.sh"]
 
